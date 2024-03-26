@@ -29,10 +29,21 @@
     // sumNumsFor([1, 2, 13]) // should return "I'm too superstitious!"
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the array.
-    // 🧠 As you have done in the past, declare a variable before you start looping, to accumulate the result.
+    // 🧠 As you have done in the past, declare a variable before you start looping, to accumulate the result. 
     function sumNumsFor(nums) {
+      let result = 0
 
-    }
+      for (let i = 0; i < nums.length; i++){
+        let element = nums[i]
+        if(typeof element === 'number'){
+          if(element === 13){
+            return "I'm too superstitious!"
+          }
+          result += element 
+        }
+    } 
+    return result
+  }
 
     // 👉 CHALLENGE 2
     // 🧠 The function stripVowels takes a string, strips all lowcase vowel letters (a,e,i,o,u) from it and returns it.
@@ -41,16 +52,43 @@
     // ❗ Notes:
     // 🧠 There are many ways to solve this, but practice using a for loop to iterate over the characters of the string.
     function stripVowels(str) {
+      let result = ''
 
-    }
+      for(let i = 0; i < str.length; i++){
+        let char = str[i] 
+        if(
+          char === 'a'||
+          char === 'e'||
+          char === 'i'||
+          char === 'o'||
+          char === 'u'){
+           delete char
+        } else {
+          result += char
+        }
+      } 
+      return result
+    } 
 
     // 👉 CHALLENGE 3
     // 🧠 Reimplement sumNumsFor using a while loop instead of a for loop.
     // 🧠 Examples of usage:
     // sumNumsWhile([1, 2, 3]) // should return 6
     // sumNumsWhile([1, 2, 13]) // should return "I'm too superstitious!"
-    function sumNumsWhile() {
-
+    function sumNumsWhile(nums) {
+      let result = 0;
+      let i = 0;
+      while(i < nums.length){
+        let element = nums[i]
+        if(typeof element === 'number'){
+          if (element === 13){
+            return "I'm too superstitious!"
+          }
+          result += element
+        }
+        i++
+      }
+      return result
     }
 
     // 👉 CHALLENGE 4
@@ -70,8 +108,15 @@
     // 🧠 There are many ways to solve this, but practice using a while loop.
     // 🧠 Work out using pen and paper how the round number and the lifePoints change after each round.
     // 🧠 As long as there are lifePoints, decrease lifePoints by round number, and increase round number by one.
-    function fightMonsters() {
-
+    function fightMonsters(lifePoints) {
+      let round = 1
+      while(lifePoints > 0){
+        lifePoints -= round
+        if(lifePoints <= 0){
+          return `You died in round ${round}`
+        }
+        round++
+      }
     }
 
     // 👉 CHALLENGE 5
@@ -81,10 +126,19 @@
     // findEvenNums([0, 1, 2, 3, 4]) // should return [0, 2, 4]
     // ❗ Notes:
     // 🧠 Use any kind of loop you'd like and the push method to populate the array of even numbers.
-    function findEvenNums() {
-
+    function findEvenNums(int) {
+      let newArray = []
+      for(let i = 0; i < int.length; i++){
+        let num = int[i]
+        if(num % 2 === 0){
+          newArray.push(num)
+        } 
+      }
+      return newArray
     }
-
+    
+    
+    
     // 👉 CHALLENGE 6
     // 🧠 The function separateAges takes an array of integers (ages) as its argument.
     // 🧠 It returns a new array containing two elements, which happen to also be arrays.
@@ -92,8 +146,19 @@
     // 🧠 Ages in the subarrays should appear in the same order they appeared in the original array.
     // 🧠 Examples of usage:
     // separateAges([31, 12, 25, 65, 84, 20]) // should return [[12, 20], [31, 25, 65, 84]]
-    function separateAges() {
-
+    function separateAges(ages) {
+      let under21 = [];
+      equalOlder21 = [];
+      newArray = [under21, equalOlder21]
+      for (let i = 0; i < ages.length; i++){
+        let num = ages[i]
+        if(num < 21){
+          under21.push(num)
+        } else {
+          equalOlder21.push(num)
+        }
+      }
+      return newArray
     }
 
     // 👉 CHALLENGE 7
@@ -103,9 +168,21 @@
     // 🧠 The "tail" prop contains an array holding the elements of the array after the first one.
     // 🧠 Examples of usage:
     // headAndTail([1, 2, 3]) // should return { head: 1, tail: [2, 3] }
-    function headAndTail() {
+    function headAndTail(arr) {
+      let obj = {};
 
-    }
+      for(let i = 0; i < arr.length; i++){
+        let element = arr[i]
+        if (i === 0){
+          obj.head = element
+        } 
+        if (i > 0){
+          obj.tail = arr.slice(1)
+        }
+       }
+        return obj
+      }
+    
 
     // 👉 CHALLENGE 8
     // 🧠 The function nestedLoops takes an array of strings as its argument.
@@ -114,9 +191,31 @@
     // nestedLoops(['hello', 'goodbye']) // should return ['hEllO', 'gOOdbyE']
     // ❗ Notes:
     // 🧠 To capitalize a string you can use its toUpperCase method: "a".toUpperCase() returns "A"
-    function nestedLoops() {
+    function nestedLoops(arr) {
+      let newArray = [];
+      for(let i in arr){
+        let word = arr[i]
 
+        let modifiedWord = ''
+        for (let i in word){
+          let char = word[i]
+          if (
+            char === 'a' ||
+            char === 'e' ||
+            char === 'i' ||
+            char === 'o' ||
+            char === 'u'
+            ){ let upperCased = char.toUpperCase()
+              modifiedWord += upperCased
+            } else {
+              modifiedWord += char
+            }
+        }
+        newArray.push(modifiedWord)
     }
+    return newArray
+  }
+  
 
     // 👉 CHALLENGE 9
     // 🧠 The function crazyTrimmer takes an array as its argument.
@@ -129,7 +228,19 @@
     // 🧠 Practice using pop and slice.
     // 🧠 Note that pop modifies the original array in place and returns the "popped" element, whereas slice gives us a brand new array.
     function crazyTrimmer(arr) {
-
+      let result = []
+      for(let i = 0; i < arr.length; i++){
+        let arrLength = arr.length
+        if(arrLength % 2 === 0){
+          arr.pop()
+          return arr
+        } else {
+          arr.pop()
+          arr.shift()
+          return arr   
+        }
+      }
+      return result
     }
 
     // 🧪 TESTS, do not work below this line
